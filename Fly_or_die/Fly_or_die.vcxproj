@@ -19,7 +19,19 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="Scr\Main.cpp" />
+    <ClCompile Include="Scr\Game\game.cpp" />
+    <ClCompile Include="Scr\main.cpp" />
+    <ClCompile Include="Scr\Screens\Controls\controls.cpp" />
+    <ClCompile Include="Scr\Screens\Credits\credits.cpp" />
+    <ClCompile Include="Scr\Screens\Gameplay\gameplay.cpp" />
+    <ClCompile Include="Scr\Screens\Menu\menu.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="Scr\Game\game.h" />
+    <ClInclude Include="Scr\Screens\Controls\controls.h" />
+    <ClInclude Include="Scr\Screens\Credits\credits.h" />
+    <ClInclude Include="Scr\Screens\Gameplay\gameplay.h" />
+    <ClInclude Include="Scr\Screens\Menu\menu.h" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>16.0</VCProjectVersion>

@@ -5,8 +5,58 @@
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
+    <Filter Include="Game">
+      <UniqueIdentifier>{088b6e02-dadd-4e34-8eb0-bc4be779dadc}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Screens">
+      <UniqueIdentifier>{84ec4d21-e68e-45db-a271-b432313b01c0}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Screens\Controls">
+      <UniqueIdentifier>{3a8808c3-9d4f-480a-bad3-6d819c3be7af}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Screens\Credits">
+      <UniqueIdentifier>{fb56c7f2-3dda-49cb-985e-172c164c1ab1}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Screens\Gameplay">
+      <UniqueIdentifier>{9d1569b8-31d7-48ff-8c6c-9305e95a7bb6}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Screens\Menu">
+      <UniqueIdentifier>{b8056b59-5c02-4a9a-abe5-a9d4e3b722ac}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="Scr\Main.cpp" />
+    <ClCompile Include="Scr\main.cpp" />
+    <ClCompile Include="Scr\Screens\Controls\controls.cpp">
+      <Filter>Screens\Controls</Filter>
+    </ClCompile>
+    <ClCompile Include="Scr\Screens\Credits\credits.cpp">
+      <Filter>Screens\Credits</Filter>
+    </ClCompile>
+    <ClCompile Include="Scr\Screens\Gameplay\gameplay.cpp">
+      <Filter>Screens\Gameplay</Filter>
+    </ClCompile>
+    <ClCompile Include="Scr\Screens\Menu\menu.cpp">
+      <Filter>Screens\Menu</Filter>
+    </ClCompile>
+    <ClCompile Include="Scr\Game\game.cpp">
+      <Filter>Game</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="Scr\Screens\Controls\controls.h">
+      <Filter>Screens\Controls</Filter>
+    </ClInclude>
+    <ClInclude Include="Scr\Screens\Credits\credits.h">
+      <Filter>Screens\Credits</Filter>
+    </ClInclude>
+    <ClInclude Include="Scr\Screens\Gameplay\gameplay.h">
+      <Filter>Screens\Gameplay</Filter>
+    </ClInclude>
+    <ClInclude Include="Scr\Screens\Menu\menu.h">
+      <Filter>Screens\Menu</Filter>
+    </ClInclude>
+    <ClInclude Include="Scr\Game\game.h">
+      <Filter>Game</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>
