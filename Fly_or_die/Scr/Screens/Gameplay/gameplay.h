@@ -4,7 +4,6 @@
 namespace gameplay {
 
 
-	void initPoints();
 	void initGame();
 	void unload();
 	void updateFrame();

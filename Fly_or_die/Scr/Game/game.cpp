@@ -20,7 +20,6 @@ namespace game {
 	{
 		InitWindow(screenWidth, screenHeight, "PONG");
 
-		gameplay::initPoints();
 		gameplay::initGame();
 		menu::initMenu();
 		controls::initControls();
