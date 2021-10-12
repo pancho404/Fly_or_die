@@ -25,34 +25,22 @@ namespace gameplay {
 
 	int mauseradius;
 
-	Rectangle player1;
+	Rectangle obstacle;
 
 	Rectangle retry;
 	Rectangle menu;
 
 	Rectangle menu_button;
 
-	bool shieldActive = false;
-	bool shieldActive2 = false;
-	bool collisionShield = false;
-	bool collisionShield2 = false;
-	bool obstacleActive = false;
-	bool collisionObstacle = false;
-	bool collisionObstacle2 = false;
-
 	Texture2D background;
 	Vector2 mause;
 	Color mauseColor;
 
 	Vector2 ballPosition;
-	Vector2 ballSpeed;
 	Vector2 ballSpeedRef;
 	Color ballColor;
 	int ballRadius;
-	Vector2 pointTop;
-	Vector2 pointBot;
-	Vector2 pointLeft;
-	Vector2 pointRigth;
+	
 
 	int impact;
 	bool off = true;
@@ -61,8 +49,8 @@ namespace gameplay {
 	
 	void initPlayer() {
 
-		player1.height = 80;
-		player1.width = 10;
+		obstacle.height = 200;
+		obstacle.width = 100;
 
 
 	}
@@ -78,8 +66,8 @@ namespace gameplay {
 
 		initPlayer();
 
-		player1.x = static_cast<float>(screenWidth) / 6 - 90;
-		player1.y = static_cast<float>(screenHeight) / 4 + 50;
+		obstacle.x = static_cast<float>(screenWidth) -100;
+		obstacle.y = static_cast<float>(screenHeight) -200;
 
 	
 		//Botones
@@ -100,15 +88,9 @@ namespace gameplay {
 
 		//pelota
 		ballPosition = { static_cast<float>(GetScreenWidth()) / 2, static_cast<float>(GetScreenHeight()) / 2 };
-		ballSpeed = { 6.0f, 4.0f };
-		ballSpeedRef = ballSpeed;
 		ballColor = MAROON;
 		ballRadius = 20;
-		pointRigth = { (ballPosition.x + ballRadius), ballPosition.y };
-		pointTop = { ballPosition.x, (ballPosition.y + ballRadius) };
-		pointBot = { ballPosition.x, (ballPosition.y - ballRadius) };
-		pointLeft = { (ballPosition.x - ballRadius), ballPosition.y };
-
+		
 		impact = 0;
 
 		mauseradius = 10;
@@ -133,47 +115,40 @@ namespace gameplay {
 
 		if (inicio) {
 
-						//jugador 1
+			//jugador 
 			if (IsKeyDown(controls::upPlayer1)) {
 
-				if (player1.y > 0) {
+				if (ballPosition.y > 0) {
 
-					player1.y -= 5.0f;
+					ballPosition.y -= 5.0f;
 
 				}
 			}
 
 			if (IsKeyDown(controls::downPlayer1)) {
 
-				if (player1.y + player1.y / 2 - 50 < GetScreenHeight()) {
+				if (ballPosition.y  < GetScreenHeight()) {
 
-					player1.y += 5.0f;
+					ballPosition.y += 5.0f;
 
 				}
 			}
 
 		}
 
-		if (CheckCollisionPointRec(mause, menu_button)) {
-
-			if (IsMouseButtonPressed(MOUSE_LEFT_BUTTON))
-			{
-				initGame();
-				game::Screens = game::Menu;
-
-			}
-		}
 
 	}
 
 	static void updateGame() {
 
 		if (inicio) {
-
 			mause = GetMousePosition();
+
 
 		}
 	}
+
+
 	static void draw() {
 
 		BeginDrawing();
@@ -192,9 +167,9 @@ namespace gameplay {
 
 			}
 
-			DrawRectangle(static_cast<int>(player1.x), static_cast<int>(player1.y), static_cast<int>(player1.width), static_cast<int>(player1.height), controls::player1Color);
+			DrawRectangle(static_cast<int>(obstacle.x), static_cast<int>(obstacle.y), static_cast<int>(obstacle.width), static_cast<int>(obstacle.height), controls::player1Color);
 
-			DrawRectangleRec(player1, controls::player1Color);
+			DrawRectangleRec(obstacle, controls::player1Color);
 
 
 			DrawCircleV(ballPosition, static_cast<float>(ballRadius), ballColor);
