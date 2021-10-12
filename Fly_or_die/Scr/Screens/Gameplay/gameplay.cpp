@@ -25,6 +25,8 @@ namespace gameplay {
 
 	int mauseradius;
 
+	bool collision = false;
+
 	Rectangle obstacle;
 
 	Rectangle retry;
@@ -66,7 +68,7 @@ namespace gameplay {
 
 		initPlayer();
 
-		obstacle.x = static_cast<float>(screenWidth) -100;
+		obstacle.x = static_cast<float>(screenWidth) ;
 		obstacle.y = static_cast<float>(screenHeight) -200;
 
 	
@@ -144,6 +146,17 @@ namespace gameplay {
 		if (inicio) {
 			mause = GetMousePosition();
 
+			collision = CheckCollisionCircleRec(ballPosition, static_cast<float>(ballRadius), obstacle);
+
+			if (collision) {
+				game::Screens = game::Menu;
+				ballPosition.y = 10;
+			}
+
+			obstacle.x -= 5.0f;
+			if (obstacle.x < -100) {
+				obstacle.x = screenWidth;
+			}
 
 		}
 	}

@@ -18,7 +18,7 @@ namespace game {
 
 	int core()
 	{
-		InitWindow(screenWidth, screenHeight, "PONG");
+		InitWindow(screenWidth, screenHeight, "Fly or die");
 
 		gameplay::initGame();
 		menu::initMenu();
