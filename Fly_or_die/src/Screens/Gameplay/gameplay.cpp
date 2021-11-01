@@ -277,7 +277,7 @@ namespace gameplay {
 
 		DrawTexture(obstacleTexture, obstacle.x-60.0f, obstacle.y-50.0f, WHITE);
 
-		DrawCircleV(ballPosition, static_cast<float>(ballRadius), ballColor);
+		
 		if (ballSpeedRef < 0)
 		{
 			DrawTexture(angelFrame2, ballPosition.x - ballRadius, ballPosition.y - ballRadius * 3, WHITE);
