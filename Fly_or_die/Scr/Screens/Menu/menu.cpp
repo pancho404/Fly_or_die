@@ -87,7 +87,7 @@ namespace menu {
 		DrawText("jugar", static_cast<int>(rec1.x) + 18, static_cast<int>(rec1.y) + 10, 18, WHITE);
 		DrawText("Creditos", static_cast<int>(rec2.x) + 5, static_cast<int>(rec2.y) + 10, 18, WHITE);
 		DrawText("Controles", static_cast<int>(rec3.x) + 5, static_cast<int>(rec3.y) + 10, 18, WHITE);
-		DrawText("Fly or die", GetScreenWidth() / 2 - 110, 50, 100, MAROON);
+		DrawText("Fly or die", GetScreenWidth() / 2 - 240, 40, 100, MAROON);
 
 		EndDrawing();
 	}
