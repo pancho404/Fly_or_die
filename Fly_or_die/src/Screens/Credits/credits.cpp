@@ -48,9 +48,10 @@ namespace credits {
 
 		DrawText("atras", static_cast<int>(rec1.x) + 18, static_cast<int>(rec1.y) + 10, 20, WHITE);
 
-		DrawText("Fly or die, por Martin Concetti", 20, 260, 20, BLACK);
-		DrawText("Creado usando raylib y sfxr", 130, 280, 20, BLACK);
-		DrawText("Version 0.1", 130, 300, 20, BLACK);
+		DrawText("Fly or die, por Martin Concetti y Francisco Sanchez", 20, 260, 20, BLACK);
+		DrawText("Assets y arte por Martina Angelico Eingelhardt", 20, 280, 20, BLACK);
+		DrawText("Creado usando raylib y sfxr", 130, 300, 20, BLACK);
+		DrawText("Version 0.2", 130, 320, 20, BLACK);
 
 		EndDrawing();
 	}

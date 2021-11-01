@@ -25,38 +25,40 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="Scr\main.cpp" />
-    <ClCompile Include="Scr\Screens\Controls\controls.cpp">
+    <ClCompile Include="src\Game\game.cpp">
+      <Filter>Game</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Screens\Controls\controls.cpp">
       <Filter>Screens\Controls</Filter>
     </ClCompile>
-    <ClCompile Include="Scr\Screens\Credits\credits.cpp">
+    <ClCompile Include="src\Screens\Credits\credits.cpp">
       <Filter>Screens\Credits</Filter>
     </ClCompile>
-    <ClCompile Include="Scr\Screens\Gameplay\gameplay.cpp">
+    <ClCompile Include="src\Screens\Gameplay\gameplay.cpp">
       <Filter>Screens\Gameplay</Filter>
     </ClCompile>
-    <ClCompile Include="Scr\Screens\Menu\menu.cpp">
+    <ClCompile Include="src\Screens\Menu\menu.cpp">
       <Filter>Screens\Menu</Filter>
     </ClCompile>
-    <ClCompile Include="Scr\Game\game.cpp">
-      <Filter>Game</Filter>
+    <ClCompile Include="src\Main.cpp">
+      <Filter>Screens</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Scr\Screens\Controls\controls.h">
+    <ClInclude Include="src\Game\game.h">
+      <Filter>Game</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Screens\Controls\controls.h">
       <Filter>Screens\Controls</Filter>
     </ClInclude>
-    <ClInclude Include="Scr\Screens\Credits\credits.h">
+    <ClInclude Include="src\Screens\Credits\credits.h">
       <Filter>Screens\Credits</Filter>
     </ClInclude>
-    <ClInclude Include="Scr\Screens\Gameplay\gameplay.h">
+    <ClInclude Include="src\Screens\Gameplay\gameplay.h">
       <Filter>Screens\Gameplay</Filter>
     </ClInclude>
-    <ClInclude Include="Scr\Screens\Menu\menu.h">
+    <ClInclude Include="src\Screens\Menu\menu.h">
       <Filter>Screens\Menu</Filter>
-    </ClInclude>
-    <ClInclude Include="Scr\Game\game.h">
-      <Filter>Game</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

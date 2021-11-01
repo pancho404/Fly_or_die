@@ -28,13 +28,13 @@ namespace gameplay {
 	bool collision = false;
 
 	Rectangle obstacle;
-
+	Texture2D obstacleTexture;
 	Rectangle retry;
 	Rectangle menu;
 
 	Rectangle menu_button;
 
-	Texture2D background;
+	Texture2D background;	
 	Vector2 mause;
 	Color mauseColor;
 
@@ -44,7 +44,8 @@ namespace gameplay {
 	float ballGravity;
 	Color ballColor;
 	int ballRadius;
-
+	Texture2D angelFrame1;
+	Texture2D angelFrame2;
 
 	int impact;
 	bool off = true;
@@ -53,10 +54,19 @@ namespace gameplay {
 
 	void initPlayer() {
 
-		obstacle.height = 200;
+		//obstaculos
+		obstacle.height = 240;
 		obstacle.width = 100;
-
-
+		obstacleTexture = LoadTexture("column.png");
+		//pelota
+		ballPosition = { static_cast<float>(GetScreenWidth()) / 2, static_cast<float>(GetScreenHeight()) / 2 };
+		ballColor = MAROON;
+		ballRadius = 20;
+		ballSpeedRef = 0;
+		ballAcceleration = 0;
+		ballGravity = 300.0f;
+		angelFrame1 = LoadTexture("angel1.png");
+		angelFrame2 = LoadTexture("angel2.png");
 	}
 
 	void initGame() {
@@ -88,13 +98,7 @@ namespace gameplay {
 		menu_button.height = 50;
 		menu_button.width = 100;
 
-		//pelota
-		ballPosition = { static_cast<float>(GetScreenWidth()) / 2, static_cast<float>(GetScreenHeight()) / 2 };
-		ballColor = MAROON;
-		ballRadius = 20;
-		ballSpeedRef = 0;
-		ballAcceleration = 0;
-		ballGravity = 300.0f;
+		
 
 		impact = 0;
 
@@ -104,7 +108,9 @@ namespace gameplay {
 	}
 
 	void unload() {
-
+		UnloadTexture(angelFrame1);
+		UnloadTexture(angelFrame2);
+		UnloadTexture(obstacleTexture);
 	}
 
 	static void updateInput() {
@@ -157,6 +163,7 @@ namespace gameplay {
 			collision = CheckCollisionCircleRec(ballPosition, static_cast<float>(ballRadius), obstacle);
 
 			if (collision) {
+				unload();
 				game::Screens = game::Menu;
 				ballPosition.y = GetScreenHeight() / 2;
 				obstacle.x = screenWidth;
@@ -173,6 +180,7 @@ namespace gameplay {
 		{
 			if (CheckCollisionPointRec(mause, menu_button) && IsMouseButtonPressed(MouseButton::MOUSE_LEFT_BUTTON))
 			{
+				unload();
 				game::Screens = game::Menu;
 				ballPosition.y = GetScreenHeight()/2;
 				obstacle.x = screenWidth;
@@ -199,12 +207,20 @@ namespace gameplay {
 
 		}
 
-		DrawRectangle(static_cast<int>(obstacle.x), static_cast<int>(obstacle.y), static_cast<int>(obstacle.width), static_cast<int>(obstacle.height), controls::player1Color);
-
+		//DrawRectangle(static_cast<int>(obstacle.x), static_cast<int>(obstacle.y), static_cast<int>(obstacle.width), static_cast<int>(obstacle.height), controls::player1Color);
+		DrawTexture(obstacleTexture, obstacle.x, obstacle.y, WHITE);
 		DrawRectangleRec(obstacle, controls::player1Color);
 
 
-		DrawCircleV(ballPosition, static_cast<float>(ballRadius), ballColor);
+		//DrawCircleV(ballPosition, static_cast<float>(ballRadius), ballColor);
+		if (ballSpeedRef<0)
+		{
+			DrawTexture(angelFrame2, ballPosition.x, ballPosition.y, WHITE);
+		}
+		else
+		{
+			DrawTexture(angelFrame1, ballPosition.x, ballPosition.y, WHITE);
+		}
 
 
 
