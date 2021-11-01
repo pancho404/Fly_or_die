@@ -49,9 +49,11 @@ namespace credits {
 		DrawText("atras", static_cast<int>(rec1.x) + 18, static_cast<int>(rec1.y) + 10, 20, WHITE);
 
 		DrawText("Fly or die, por Martin Concetti y Francisco Sanchez", 20, 260, 20, BLACK);
-		DrawText("Assets y arte por Martina Angelico Eingelhardt y Ansimuz", 20, 280, 20, BLACK);
-		DrawText("Creado usando raylib y sfxr", 130, 300, 20, BLACK);
-		DrawText("Version 0.2", 130, 320, 20, BLACK);
+		DrawText("Assets por Martina Angelico Eingelhardt", 20, 280, 20, BLACK);
+		DrawText("Grassy Mountains Parallax Bacgkround by vnitti", 20, 300, 20, BLACK);
+		DrawText("(https://vnitti.itch.io/grassy-mountains-parallax-background)", 20, 320, 20, BLACK);
+		DrawText("Creado usando raylib y sfxr", 130, 340, 20, BLACK);
+		DrawText("Version 0.2", 130, 360, 20, BLACK);
 
 		EndDrawing();
 	}
