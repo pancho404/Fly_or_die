@@ -49,7 +49,7 @@ namespace controls {
 
 	void initControls() {
 
-		background = LoadTexture("../res/assets/images/Background.png");
+		background = LoadTexture("../../../Res/background4.png");
 
 		player1.x = static_cast<float>(GetScreenWidth()) / 6 - 120;
 		player1.y = static_cast<float>(GetScreenHeight()) / 4 + 50;
@@ -102,7 +102,7 @@ namespace controls {
 
 		colorChange = CheckCollisionCircleRec(mause, static_cast<float>(mauseradius), player1);
 		colorChange2 = CheckCollisionCircleRec(mause, static_cast<float>(mauseradius), player2);
-		
+
 
 		if (CheckCollisionPointRec(mause, rect1)) {
 
@@ -114,7 +114,7 @@ namespace controls {
 
 		}
 
-	
+
 	}
 
 	void drawControls() {
@@ -133,12 +133,12 @@ namespace controls {
 
 		ClearBackground(RAYWHITE);
 		DrawText("atras", static_cast<int>(rect1.x) + 18, static_cast<int>(rect1.y) + 10, 20, WHITE);
-		DrawText("Q para subir A para bajar", 40, 100, 20, BLACK);
-		DrawText("Espacio para empezar", 40, 120, 20, BLACK);
-		
+		DrawText("Spacebar para saltar", 40, 100, 20, BLACK);
+		DrawText("Enter para empezar", 40, 120, 20, BLACK);
 
 
-		
+
+
 		DrawCircleV(mause, static_cast<float>(mauseradius), mauseColor);
 
 		EndDrawing();
