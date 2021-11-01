@@ -135,9 +135,6 @@ namespace controls {
 		DrawText("Click para saltar (jugador rojo)", 40, 120, 20, BLACK);
 		DrawText("P para empezar", 40, 140, 20, BLACK);
 
-
-
-
 		DrawCircleV(mause, static_cast<float>(mauseradius), mauseColor);
 
 		EndDrawing();
