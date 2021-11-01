@@ -20,7 +20,7 @@ namespace gameplay {
 	const int screenWidth = 800;
 	const int screenHeight = 450;
 
-	
+
 	bool inicio = false;
 
 	int mauseradius;
@@ -44,13 +44,13 @@ namespace gameplay {
 	float ballGravity;
 	Color ballColor;
 	int ballRadius;
-	
+
 
 	int impact;
 	bool off = true;
 	float time;
 
-	
+
 	void initPlayer() {
 
 		obstacle.height = 200;
@@ -68,10 +68,10 @@ namespace gameplay {
 
 		initPlayer();
 
-		obstacle.x = static_cast<float>(screenWidth) ;
-		obstacle.y = static_cast<float>(screenHeight) -200;
+		obstacle.x = static_cast<float>(screenWidth);
+		obstacle.y = static_cast<float>(screenHeight) - 200;
 
-	
+
 		//Botones
 		menu.height = 40;
 		menu.width = 90;
@@ -104,12 +104,12 @@ namespace gameplay {
 	}
 
 	void unload() {
-		
+
 	}
 
 	static void updateInput() {
 
-		if (IsKeyPressed(32)) inicio = !inicio;
+		if (IsKeyPressed(KEY_P)) inicio = !inicio;
 
 		if (inicio == false) {
 
@@ -121,25 +121,8 @@ namespace gameplay {
 		if (inicio) {
 
 			//jugador 
-			/*if (IsKeyDown(controls::upPlayer1)) {
 
-				if (ballPosition.y > 0) {
-
-					ballPosition.y -= 5.0f;
-
-				}
-			}
-
-			if (IsKeyDown(controls::downPlayer1)) {
-
-				if (ballPosition.y  < GetScreenHeight()) {
-
-					ballPosition.y += 5.0f;
-
-				}
-			}*/
-
-			if ((IsKeyPressed(KEY_SPACE) || IsMouseButtonPressed(MOUSE_LEFT_BUTTON))) {
+			if ((IsKeyPressed(KEY_SPACE))) {
 				ballAcceleration = 0;
 				ballSpeedRef = -ballGravity / 2;
 			}
@@ -175,14 +158,25 @@ namespace gameplay {
 
 			if (collision) {
 				game::Screens = game::Menu;
-				ballPosition.y = 10;
+				ballPosition.y = GetScreenHeight() / 2;
+				obstacle.x = screenWidth;
 			}
 
 			obstacle.x -= 5.0f;
 			if (obstacle.x < -100) {
 				obstacle.x = screenWidth;
+				obstacle.y = rand() % 200 + (screenHeight / 2);
 			}
 
+		}
+		else
+		{
+			if (CheckCollisionPointRec(mause, menu_button) && IsMouseButtonPressed(MouseButton::MOUSE_LEFT_BUTTON))
+			{
+				game::Screens = game::Menu;
+				ballPosition.y = GetScreenHeight()/2;
+				obstacle.x = screenWidth;
+			}
 		}
 	}
 
@@ -195,28 +189,28 @@ namespace gameplay {
 
 		DrawTexture(background, 0, 0, WHITE);
 
-		
-
-			if (inicio == false) {
-
-				DrawCircleV(mause, static_cast<float>(mauseradius), mauseColor);
-				DrawRectangle(static_cast<int>(menu_button.x), static_cast<int>(menu_button.y), static_cast<int>(menu_button.width), static_cast<int>(menu_button.height), BLACK);
-				DrawText("Menu", static_cast<int>(menu_button.x) + 18, static_cast<int>(menu_button.y) + 10, 20, WHITE);
-
-			}
-
-			DrawRectangle(static_cast<int>(obstacle.x), static_cast<int>(obstacle.y), static_cast<int>(obstacle.width), static_cast<int>(obstacle.height), controls::player1Color);
-
-			DrawRectangleRec(obstacle, controls::player1Color);
 
 
-			DrawCircleV(ballPosition, static_cast<float>(ballRadius), ballColor);
+		if (inicio == false) {
 
-		
+			DrawCircleV(mause, static_cast<float>(mauseradius), mauseColor);
+			DrawRectangle(static_cast<int>(menu_button.x), static_cast<int>(menu_button.y), static_cast<int>(menu_button.width), static_cast<int>(menu_button.height), BLACK);
+			DrawText("Menu", static_cast<int>(menu_button.x) + 18, static_cast<int>(menu_button.y) + 10, 20, WHITE);
+
+		}
+
+		DrawRectangle(static_cast<int>(obstacle.x), static_cast<int>(obstacle.y), static_cast<int>(obstacle.width), static_cast<int>(obstacle.height), controls::player1Color);
+
+		DrawRectangleRec(obstacle, controls::player1Color);
+
+
+		DrawCircleV(ballPosition, static_cast<float>(ballRadius), ballColor);
+
+
 
 		//Dibujo de pantalla de victoria
 
-		
+
 
 		EndDrawing();
 	}
