@@ -11,8 +11,6 @@ namespace menu {
 
 	Texture2D background;
 	
-	bool player2Mode;
-
 	static Vector2 mousePoint;
 	static Rectangle rec1;
 	static Rectangle rec2;
@@ -22,6 +20,8 @@ namespace menu {
 
 
 	void initMenu() {
+
+		bool player2Mode = false;
 
 		background = LoadTexture("Res/background4");
 
@@ -63,7 +63,7 @@ namespace menu {
 			if (IsMouseButtonPressed(MOUSE_LEFT_BUTTON)) {
 
 				game::Screens = game::Game;
-				menu::player2Mode = false;
+				player2Mode = false;
 			}
 		}
 		if (CheckCollisionPointRec(mousePoint, rec2)) {

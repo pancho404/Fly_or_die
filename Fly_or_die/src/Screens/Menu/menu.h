@@ -3,6 +3,8 @@
 
 
 
+extern bool player2Mode;
+
 namespace menu {
 
 	

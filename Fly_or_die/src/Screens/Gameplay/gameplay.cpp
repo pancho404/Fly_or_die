@@ -59,7 +59,6 @@ namespace gameplay {
 	Vector2 ballPosition2;
 	float ballSpeedRef2;
 	float ballAcceleration2;
-	float ballGravity2;
 	Color ballColor2;
 	int ballRadius2;
 
@@ -72,6 +71,7 @@ namespace gameplay {
 	void initPlayer() {
 
 		ballPosition = { static_cast<float>(GetScreenWidth()) / 2, static_cast<float>(GetScreenHeight()) / 2 };
+
 		ballColor = MAROON;
 		ballRadius = 20;
 		ballSpeedRef = 0;
@@ -83,9 +83,13 @@ namespace gameplay {
 		ballPosition2 = { static_cast<float>(GetScreenWidth()) / 2, static_cast<float>(GetScreenHeight()) / 2 };
 		ballSpeedRef2 = 0;
 		ballAcceleration2 = 0;
-		ballGravity2 = 300.0f;
-		ballColor2 = MAROON;
+		ballColor2 = BLUE;
 		ballRadius2 = 20;
+		if (player2Mode)
+		{
+			ballPosition = { static_cast<float>(GetScreenWidth()) / 2, static_cast<float>(GetScreenHeight()) / 2 - angelFrame1.height / 2 };
+			ballPosition2 = { static_cast<float>(GetScreenWidth()) / 2, static_cast<float>(GetScreenHeight()) / 2 - angelFrame1.height / 2 };
+		}
 	}
 
 	void initGame() {
@@ -186,6 +190,28 @@ namespace gameplay {
 			if ((ballSpeedRef > 0 && ballPosition.y <= GetScreenHeight() - ballRadius) || (ballSpeedRef < 0 && ballPosition.y >= ballRadius))
 				ballPosition.y += ballSpeedRef * GetFrameTime();
 
+			if (IsMouseButtonPressed(MouseButton::MOUSE_LEFT_BUTTON)) {
+				ballAcceleration2 = 0;
+				ballSpeedRef2 = -ballGravity / 2;
+			}
+			else {
+				ballAcceleration2 += ballGravity * GetFrameTime();
+			}
+
+			if (ballAcceleration2 >= ballGravity) {
+				ballAcceleration2 = ballGravity;
+			}
+
+			if (ballSpeedRef2 < 0) {
+				ballSpeedRef2 += ballAcceleration2 * 2 * GetFrameTime();
+			}
+			else {
+				ballSpeedRef2 += ballAcceleration2 * GetFrameTime();
+			}
+
+			if ((ballSpeedRef2 > 0 && ballPosition2.y <= GetScreenHeight() - ballRadius2) || (ballSpeedRef2 < 0 && ballPosition2.y >= ballRadius2))
+				ballPosition2.y += ballSpeedRef2 * GetFrameTime();
+
 		}
 
 
@@ -196,7 +222,7 @@ namespace gameplay {
 		if (inicio) {
 
 
-			scrollingMid -= 50.0f*GetFrameTime();
+			scrollingMid -= 50.0f * GetFrameTime();
 			scrollingFore -= 100.0f * GetFrameTime();
 			scrollingCloserFore -= 150.0f * GetFrameTime();
 
@@ -215,7 +241,7 @@ namespace gameplay {
 				obstacle.x = screenWidth;
 			}
 
-			obstacle.x -= 300.0f*GetFrameTime();
+			obstacle.x -= 300.0f * GetFrameTime();
 			if (obstacle.x < -100) {
 				obstacle.x = screenWidth;
 				obstacle.y = rand() % 200 + (screenHeight / 2);
@@ -273,11 +299,9 @@ namespace gameplay {
 
 		}
 
-		DrawRectangle(static_cast<int>(obstacle.x), static_cast<int>(obstacle.y), static_cast<int>(obstacle.width), static_cast<int>(obstacle.height), controls::player1Color);
+		DrawTexture(obstacleTexture, obstacle.x - 60.0f, obstacle.y - 50.0f, WHITE);
 
-		DrawTexture(obstacleTexture, obstacle.x-60.0f, obstacle.y-50.0f, WHITE);
 
-		
 		if (ballSpeedRef < 0)
 		{
 			DrawTexture(angelFrame2, ballPosition.x - ballRadius, ballPosition.y - ballRadius * 3, WHITE);
@@ -289,14 +313,14 @@ namespace gameplay {
 
 		if (player2Mode)
 		{
-			DrawCircleV(ballPosition2, static_cast<float>(ballRadius2), ballColor2);
+			
 			if (ballSpeedRef < 0)
 			{
-				DrawTexture(angelFrame2, ballPosition.x - ballRadius, ballPosition.y - ballRadius * 3, RED);
+				DrawTexture(angelFrame2, ballPosition2.x - ballRadius, ballPosition2.y - ballRadius * 3, RED);
 			}
 			else
 			{
-				DrawTexture(angelFrame1, ballPosition.x - ballRadius, ballPosition.y - ballRadius * 3, RED);
+				DrawTexture(angelFrame1, ballPosition2.x - ballRadius, ballPosition2.y - ballRadius * 3, RED);
 			}
 		}
 

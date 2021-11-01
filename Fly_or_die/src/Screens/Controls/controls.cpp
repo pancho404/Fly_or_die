@@ -48,9 +48,7 @@ namespace controls {
 	char downPlayer2 = 'L';
 
 	void initControls() {
-
-		background = LoadTexture("../../../Res/background4.png");
-
+		
 		player1.x = static_cast<float>(GetScreenWidth()) / 6 - 120;
 		player1.y = static_cast<float>(GetScreenHeight()) / 4 + 50;
 		player1.height = 80;
@@ -133,8 +131,9 @@ namespace controls {
 
 		ClearBackground(RAYWHITE);
 		DrawText("atras", static_cast<int>(rect1.x) + 18, static_cast<int>(rect1.y) + 10, 20, WHITE);
-		DrawText("Spacebar para saltar", 40, 100, 20, BLACK);
-		DrawText("Enter para empezar", 40, 120, 20, BLACK);
+		DrawText("Spacebar para saltar (jugador blanco)", 40, 100, 20, BLACK);
+		DrawText("Click para saltar (jugador rojo)", 40, 120, 20, BLACK);
+		DrawText("P para empezar", 40, 140, 20, BLACK);
 
 
 
