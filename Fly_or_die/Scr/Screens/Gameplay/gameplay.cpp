@@ -39,7 +39,9 @@ namespace gameplay {
 	Color mauseColor;
 
 	Vector2 ballPosition;
-	Vector2 ballSpeedRef;
+	float ballSpeedRef;
+	float ballAcceleration;
+	float ballGravity;
 	Color ballColor;
 	int ballRadius;
 	
@@ -60,8 +62,6 @@ namespace gameplay {
 	void initGame() {
 
 		//inicia el audio
-
-		//InitWindow(screenWidth, screenHeight, "PONG");
 
 		mause = { -100.0f, -100.0f };
 		mauseColor = DARKBLUE;
@@ -92,7 +92,10 @@ namespace gameplay {
 		ballPosition = { static_cast<float>(GetScreenWidth()) / 2, static_cast<float>(GetScreenHeight()) / 2 };
 		ballColor = MAROON;
 		ballRadius = 20;
-		
+		ballSpeedRef = 0;
+		ballAcceleration = 0;
+		ballGravity = 300.0f;
+
 		impact = 0;
 
 		mauseradius = 10;
@@ -118,7 +121,7 @@ namespace gameplay {
 		if (inicio) {
 
 			//jugador 
-			if (IsKeyDown(controls::upPlayer1)) {
+			/*if (IsKeyDown(controls::upPlayer1)) {
 
 				if (ballPosition.y > 0) {
 
@@ -134,7 +137,29 @@ namespace gameplay {
 					ballPosition.y += 5.0f;
 
 				}
+			}*/
+
+			if ((IsKeyPressed(KEY_SPACE) || IsMouseButtonPressed(MOUSE_LEFT_BUTTON))) {
+				ballAcceleration = 0;
+				ballSpeedRef = -ballGravity / 2;
 			}
+			else {
+				ballAcceleration += ballGravity * GetFrameTime();
+			}
+
+			if (ballAcceleration >= ballGravity) {
+				ballAcceleration = ballGravity;
+			}
+
+			if (ballSpeedRef < 0) {
+				ballSpeedRef += ballAcceleration * 2 * GetFrameTime();
+			}
+			else {
+				ballSpeedRef += ballAcceleration * GetFrameTime();
+			}
+
+			if ((ballSpeedRef > 0 && ballPosition.y <= GetScreenHeight() - ballRadius) || (ballSpeedRef < 0 && ballPosition.y >= ballRadius))
+				ballPosition.y += ballSpeedRef * GetFrameTime();
 
 		}
 
