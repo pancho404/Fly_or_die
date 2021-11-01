@@ -8,7 +8,7 @@
 #include "Screens/Menu/menu.h"
 #include "Screens/Controls/controls.h"
 
-bool player2Mode=false;
+bool player2Mode = false;
 
 namespace gameplay {
 
@@ -36,6 +36,10 @@ namespace gameplay {
 
 	Rectangle menu_button;
 
+	float scrollingBack = 0.0f;
+	float scrollingMid = 0.0f;
+	float scrollingFore = 0.0f;
+	float scrollingCloserFore = 0.0f;
 	Texture2D background1;
 	Texture2D background2;
 	Texture2D background3;
@@ -97,15 +101,20 @@ namespace gameplay {
 		obstacle.y = static_cast<float>(screenHeight) - 200;
 		//obstaculos
 		obstacle.height = 240;
-		obstacle.width = 100;
+		obstacle.width = 50;
 		obstacleTexture = LoadTexture("Res/column.png");
 
 		//Background
+
+		scrollingBack -= 0.1f;
+		scrollingMid -= 0.5f;
+		scrollingFore -= 1.0f;
+		scrollingCloserFore -= 1.5f;
 		background1 = LoadTexture("Res/background1.png");
 		background2 = LoadTexture("Res/background2.png");
 		background3 = LoadTexture("Res/background3.png");
 		background4 = LoadTexture("Res/background4.png");
-		
+
 
 		//Botones
 		menu.height = 40;
@@ -136,10 +145,10 @@ namespace gameplay {
 		UnloadTexture(angelFrame1);
 		UnloadTexture(angelFrame2);
 		UnloadTexture(obstacleTexture);
-		UnloadTexture(background1);		
-		UnloadTexture(background2);		
-		UnloadTexture(background3);		
-		UnloadTexture(background4);		
+		UnloadTexture(background1);
+		UnloadTexture(background2);
+		UnloadTexture(background3);
+		UnloadTexture(background4);
 	}
 
 	static void updateInput() {
@@ -185,11 +194,22 @@ namespace gameplay {
 	static void updateGame() {
 
 		if (inicio) {
+
+
+			scrollingMid -= 0.5;
+			scrollingFore -= 1.0;
+			scrollingCloserFore -= 1.5;
+
+			if (scrollingBack <= -background4.width) scrollingBack = 0;
+			if (scrollingMid <= -background3.width) scrollingMid = 0;
+			if (scrollingFore <= -background2.width) scrollingFore = 0;
+			if (scrollingCloserFore <= -background1.width) scrollingCloserFore = 0;
+
 			mause = GetMousePosition();
 
 			collision = CheckCollisionCircleRec(ballPosition, static_cast<float>(ballRadius), obstacle);
 
-			if (collision) {				
+			if (collision) {
 				game::Screens = game::Menu;
 				ballPosition.y = GetScreenHeight() / 2;
 				obstacle.x = screenWidth;
@@ -205,7 +225,7 @@ namespace gameplay {
 		else
 		{
 			if (CheckCollisionPointRec(mause, menu_button) && IsMouseButtonPressed(MouseButton::MOUSE_LEFT_BUTTON))
-			{				
+			{
 				game::Screens = game::Menu;
 				ballPosition.y = GetScreenHeight() / 2;
 				obstacle.x = screenWidth;
@@ -220,10 +240,28 @@ namespace gameplay {
 
 		ClearBackground(RAYWHITE);
 
-		DrawTexture(background4, 0, 0, WHITE);
-		DrawTexture(background3, 0, 0, WHITE);
-		DrawTexture(background2, 0, 0, WHITE);
-		DrawTexture(background1, 0, 0, WHITE);
+		background1.width = GetScreenWidth();
+		background2.width = GetScreenWidth();
+		background3.width = GetScreenWidth();
+		background4.width = GetScreenWidth();
+		background1.height = screenHeight;
+		background2.height = screenHeight;
+		background3.height = screenHeight;
+		background4.height = screenHeight;
+
+		DrawTextureEx(background4, { scrollingBack, 0 }, 0.0f, 1.0f, WHITE);
+		DrawTextureEx(background4, { background4.width + scrollingBack, 0 }, 0.0f, 1.0f, WHITE);
+
+		// Draw midground image twice
+		DrawTextureEx(background3, { scrollingMid, 0 }, 0.0f, 1.0f, WHITE);
+		DrawTextureEx(background3, { background3.width + scrollingMid, 0 }, 0.0f, 1.0f, WHITE);
+
+		// Draw foreground image twice
+		DrawTextureEx(background2, { scrollingFore, 0 }, 0.0f, 1.0f, WHITE);
+		DrawTextureEx(background2, { background2.width + scrollingFore, 0 }, 0.0f, 1.0f, WHITE);
+
+		DrawTextureEx(background1, { scrollingCloserFore, 0 }, 0.0f, 1.0f, WHITE);
+		DrawTextureEx(background1, { background1.width + scrollingCloserFore, 0 }, 0.0f, 1.0f, WHITE);
 
 
 
@@ -242,11 +280,11 @@ namespace gameplay {
 		DrawCircleV(ballPosition, static_cast<float>(ballRadius), ballColor);
 		if (ballSpeedRef < 0)
 		{
-			DrawTexture(angelFrame2, ballPosition.x-ballRadius, ballPosition.y-ballRadius*3, WHITE);
+			DrawTexture(angelFrame2, ballPosition.x - ballRadius, ballPosition.y - ballRadius * 3, WHITE);
 		}
 		else
 		{
-			DrawTexture(angelFrame1, ballPosition.x - ballRadius, ballPosition.y - ballRadius*3, WHITE);
+			DrawTexture(angelFrame1, ballPosition.x - ballRadius, ballPosition.y - ballRadius * 3, WHITE);
 		}
 
 		if (player2Mode)
@@ -254,11 +292,11 @@ namespace gameplay {
 			DrawCircleV(ballPosition2, static_cast<float>(ballRadius2), ballColor2);
 			if (ballSpeedRef < 0)
 			{
-				DrawTexture(angelFrame2, ballPosition.x - ballRadius, ballPosition.y - ballRadius*3, RED);
+				DrawTexture(angelFrame2, ballPosition.x - ballRadius, ballPosition.y - ballRadius * 3, RED);
 			}
 			else
 			{
-				DrawTexture(angelFrame1, ballPosition.x - ballRadius, ballPosition.y - ballRadius*3, RED);
+				DrawTexture(angelFrame1, ballPosition.x - ballRadius, ballPosition.y - ballRadius * 3, RED);
 			}
 		}
 
