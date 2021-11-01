@@ -1,6 +1,8 @@
 #ifndef Game_H
 #define Game_H
 
+
+
 namespace game {
 
 	enum GameScreen

@@ -1,6 +1,8 @@
 #ifndef Controls_H
 #define Controls_H
 
+
+
 namespace controls {
 
 	extern Color player1Color;
