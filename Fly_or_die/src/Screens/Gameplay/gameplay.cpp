@@ -196,9 +196,9 @@ namespace gameplay {
 		if (inicio) {
 
 
-			scrollingMid -= 0.5;
-			scrollingFore -= 1.0;
-			scrollingCloserFore -= 1.5;
+			scrollingMid -= 50.0f*GetFrameTime();
+			scrollingFore -= 100.0f * GetFrameTime();
+			scrollingCloserFore -= 150.0f * GetFrameTime();
 
 			if (scrollingBack <= -background4.width) scrollingBack = 0;
 			if (scrollingMid <= -background3.width) scrollingMid = 0;
@@ -215,7 +215,7 @@ namespace gameplay {
 				obstacle.x = screenWidth;
 			}
 
-			obstacle.x -= 5.0f;
+			obstacle.x -= 300.0f*GetFrameTime();
 			if (obstacle.x < -100) {
 				obstacle.x = screenWidth;
 				obstacle.y = rand() % 200 + (screenHeight / 2);
@@ -275,7 +275,7 @@ namespace gameplay {
 
 		DrawRectangle(static_cast<int>(obstacle.x), static_cast<int>(obstacle.y), static_cast<int>(obstacle.width), static_cast<int>(obstacle.height), controls::player1Color);
 
-		DrawTextureRec(obstacleTexture, obstacle, { obstacle.x,obstacle.y }, WHITE);
+		DrawTexture(obstacleTexture, obstacle.x-60.0f, obstacle.y-50.0f, WHITE);
 
 		DrawCircleV(ballPosition, static_cast<float>(ballRadius), ballColor);
 		if (ballSpeedRef < 0)
