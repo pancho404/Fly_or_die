@@ -5,13 +5,13 @@
 
 namespace game {
 
-	enum GameScreen
+	enum  GameScreen
 	{
 		Menu = 0,
 		Game,
 		End,
 		Credits,
-		Controls
+		Controls		
 	};
 	extern GameScreen Screens;
 

@@ -70,7 +70,7 @@ namespace gameplay {
 
 	void initPlayer() {
 
-		ballPosition = { static_cast<float>(GetScreenWidth()) / 2, static_cast<float>(GetScreenHeight()) / 2 };
+		ballPosition = { static_cast<float>(GetScreenWidth()) / 4, static_cast<float>(GetScreenHeight()) / 2 };
 
 		ballColor = MAROON;
 		ballRadius = 20;
@@ -80,15 +80,15 @@ namespace gameplay {
 		angelFrame1 = LoadTexture("Res/angel1.png");
 		angelFrame2 = LoadTexture("Res/angel2.png");
 
-		ballPosition2 = { static_cast<float>(GetScreenWidth()) / 2, static_cast<float>(GetScreenHeight()) / 2 };
+		ballPosition2 = { static_cast<float>(GetScreenWidth()) / 4, static_cast<float>(GetScreenHeight()) / 2 };
 		ballSpeedRef2 = 0;
 		ballAcceleration2 = 0;
 		ballColor2 = BLUE;
 		ballRadius2 = 20;
 		if (player2Mode)
 		{
-			ballPosition = { static_cast<float>(GetScreenWidth()) / 2, static_cast<float>(GetScreenHeight()) / 2 - angelFrame1.height / 2 };
-			ballPosition2 = { static_cast<float>(GetScreenWidth()) / 2, static_cast<float>(GetScreenHeight()) / 2 - angelFrame1.height / 2 };
+			ballPosition = { static_cast<float>(GetScreenWidth()) / 4, static_cast<float>(GetScreenHeight()) / 2 - angelFrame1.height / 2 };
+			ballPosition2 = { static_cast<float>(GetScreenWidth()) / 4, static_cast<float>(GetScreenHeight()) / 2 - angelFrame1.height / 2 };
 		}
 	}
 
@@ -155,7 +155,7 @@ namespace gameplay {
 		UnloadTexture(background4);
 	}
 
-	static void updateInput() {
+	void updateInput() {
 
 		if (IsKeyPressed(KEY_P)) inicio = !inicio;
 
@@ -217,7 +217,7 @@ namespace gameplay {
 
 	}
 
-	static void updateGame() {
+	void updateGame() {
 
 		if (inicio) {
 
@@ -237,14 +237,14 @@ namespace gameplay {
 
 			if (collision) {
 				game::Screens = game::Menu;
-				ballPosition.y = GetScreenHeight() / 2;
+				ballPosition.y =static_cast<float>(GetScreenHeight() / 2);
 				obstacle.x = screenWidth;
 			}
 
 			obstacle.x -= 300.0f * GetFrameTime();
 			if (obstacle.x < -100) {
 				obstacle.x = screenWidth;
-				obstacle.y = rand() % 200 + (screenHeight / 2);
+				obstacle.y = static_cast<float>(rand() % 200 + (screenHeight / 2));
 			}
 
 		}
@@ -253,14 +253,14 @@ namespace gameplay {
 			if (CheckCollisionPointRec(mause, menu_button) && IsMouseButtonPressed(MouseButton::MOUSE_LEFT_BUTTON))
 			{
 				game::Screens = game::Menu;
-				ballPosition.y = GetScreenHeight() / 2;
+				ballPosition.y = static_cast<float>(GetScreenHeight() / 2);
 				obstacle.x = screenWidth;
 			}
 		}
 	}
 
 
-	static void draw() {
+	void draw() {
 
 		BeginDrawing();
 
@@ -299,16 +299,16 @@ namespace gameplay {
 
 		}
 
-		DrawTexture(obstacleTexture, obstacle.x - 60.0f, obstacle.y - 50.0f, WHITE);
+		DrawTexture(obstacleTexture, static_cast<int>(obstacle.x - 60.0f), static_cast<int>(obstacle.y - 50.0f), WHITE);
 
 
 		if (ballSpeedRef < 0)
 		{
-			DrawTexture(angelFrame2, ballPosition.x - ballRadius, ballPosition.y - ballRadius * 3, WHITE);
+			DrawTexture(angelFrame2, static_cast<int>(ballPosition.x - ballRadius), static_cast<int>(ballPosition.y - ballRadius * 3), WHITE);
 		}
 		else
 		{
-			DrawTexture(angelFrame1, ballPosition.x - ballRadius, ballPosition.y - ballRadius * 3, WHITE);
+			DrawTexture(angelFrame1, static_cast<int>(ballPosition.x - ballRadius), static_cast<int>(ballPosition.y - ballRadius * 3), WHITE);
 		}
 
 		if (player2Mode)
@@ -316,13 +316,14 @@ namespace gameplay {
 			
 			if (ballSpeedRef < 0)
 			{
-				DrawTexture(angelFrame2, ballPosition2.x - ballRadius, ballPosition2.y - ballRadius * 3, RED);
+				DrawTexture(angelFrame2, static_cast<int>(ballPosition2.x - ballRadius), static_cast<int>(ballPosition2.y - ballRadius * 3), RED);
 			}
 			else
 			{
-				DrawTexture(angelFrame1, ballPosition2.x - ballRadius, ballPosition2.y - ballRadius * 3, RED);
+				DrawTexture(angelFrame1, static_cast<int>(ballPosition2.x - ballRadius), static_cast<int>(ballPosition2.y - ballRadius * 3), RED);
 			}
 		}
+		
 
 
 
