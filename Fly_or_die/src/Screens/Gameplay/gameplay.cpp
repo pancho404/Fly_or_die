@@ -234,6 +234,7 @@ namespace gameplay {
 			mause = GetMousePosition();
 
 			collision = CheckCollisionCircleRec(ballPosition, static_cast<float>(ballRadius), obstacle);
+			collision = CheckCollisionCircleRec(ballPosition2, static_cast<float>(ballRadius), obstacle);
 
 			if (collision) {
 				game::Screens = game::Menu;
