@@ -107,7 +107,7 @@ namespace menu {
 		DrawText("Controles", static_cast<int>(rec3.x) + 5, static_cast<int>(rec3.y) + 10, 18, WHITE);
 		DrawText("Jugar 2P", static_cast<int>(rec5.x) + 5, static_cast<int>(rec5.y) + 10, 18, WHITE);
 		DrawText("Fly or die", GetScreenWidth() / 2 - 240, 40, 100, MAROON);
-		DrawText("v0.3", GetScreenWidth() - 40, GetScreenHeight() - 18, 18, BLACK);
+		DrawText("v1.0", GetScreenWidth() - 40, GetScreenHeight() - 18, 18, BLACK);
 
 		EndDrawing();
 	}

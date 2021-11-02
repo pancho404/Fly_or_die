@@ -53,7 +53,7 @@ namespace credits {
 		DrawText("Grassy Mountains Parallax Bacgkround by vnitti", 20, 300, 20, BLACK);
 		DrawText("(https://vnitti.itch.io/grassy-mountains-parallax-background)", 20, 320, 20, BLACK);
 		DrawText("Creado usando raylib y sfxr", 130, 340, 20, BLACK);
-		DrawText("Version 0.2", 130, 360, 20, BLACK);
+		DrawText("Version 1.0", 130, 360, 20, BLACK);
 
 		EndDrawing();
 	}
